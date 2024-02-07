@@ -5,5 +5,9 @@ interface TextProps {
 }
 
 export const Text = ({ children }: TextProps) => {
-  return <span className="">{children}</span>;
+  return <span className="text-slate-500">{children}</span>;
+};
+
+export const SmallText = ({ children }: TextProps) => {
+  return <span className="text-slate-500 text-sm">{children}</span>;
 };

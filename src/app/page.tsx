@@ -9,18 +9,20 @@ export default async function Home() {
   const supabase = createServerComponentClient({ cookies });
   const {
     data: { session },
-    // error,
   } = await supabase.auth.getSession();
 
-  const isLoggedIn = session?.user;
+  const isLoggedIn = !!session?.user;
 
   return (
     <main className="flex flex-col gap-8 items-center justify-between">
       <div className="flex flex-col gap-4 items-center justify-between pt-24">
-        <Headline className="text-5xl">Spotify AI Playlist Creator</Headline>
-        <Text>Create your playlist in seconds using AI</Text>
+        <Headline className="text-5xl">
+          SpotifAI - Spotify AI Playlist Creator
+        </Headline>
+        <Text>Create your playlist only by your current mood</Text>
       </div>
-      {isLoggedIn ? <Form /> : <AuthButton />}
+      <AuthButton isLoggedIn={isLoggedIn} />
+      {isLoggedIn && <Form />}
     </main>
   );
 }

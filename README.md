@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SpotifAI - Spotify AI Playlist Creator
 
-## Getting Started
+This application leverages AI (ChatGPT) and the Spotify API to create personalized playlists based on user input.
 
-First, run the development server:
+## Setup
+
+To run this application locally, follow these steps:
+
+### Prerequisites
+
+- Bun installed on your machine ([Download Bun](https://bun.sh/))
+- A Supabase account for database management ([Sign up for Supabase](https://supabase.io/))
+- A Spotify Developer account for API access ([Sign up for Spotify Developer](https://developer.spotify.com/))
+- An OpenAI API key for accessing the ChatGPT ([Sign up for OpenAI API](https://openai.com/blog/openai-api))
+
+### Installation
+
+1. Clone the repository to your local machine:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+git clone https://github.com/ArtyomShaitor/spotify-ai-playlist.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd spotify-playlist-creator
+```
+
+3. Install dependencies using bun:
+
+```bash
+bun install
+```
+
+4. Create `.env.local` file in the root of the project
+
+### Configuration
+
+1. Set up Supabase:
+   - Create a new Supabase project;
+   - Set the environment variables `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` with your project's URL and anonymous key, respectively.
+2. Set up Spotify:
+   - Create a new Spotify application in your Spotify Developer account;
+   - Set the environment variables `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` with your application's client ID and client secret, respectively.
+3. Set up OpenAI's GPT API:
+   - Obtain an API key for the OpenAI API;
+   - Set the environment variable `GPT_API_KEY` with your API key.
+
+### Running the Application
+
+1. Start the development server:
+
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Open your browser and navigate to http://localhost:3000 to access the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. On the homepage, input your preferences or prompts for the playlist.
+2. Click on the "Generate" button to let the AI create a playlist recommendation.

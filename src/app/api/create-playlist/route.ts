@@ -1,6 +1,7 @@
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { getSpotifyToken } from "../utils";
 
 export const POST = async (request: NextRequest) => {
   const { tracksIds = [], name }: { tracksIds: string[]; name: string } =
@@ -19,7 +20,7 @@ export const POST = async (request: NextRequest) => {
   const { data, error } = await supabase.auth.getSession();
 
   const spotifyUserId = data.session?.user.user_metadata.provider_id;
-  const accessToken = data.session?.provider_token;
+  const accessToken = await getSpotifyToken();
 
   const createPlaylistRequest = await fetch(
     `https://api.spotify.com/v1/users/${spotifyUserId}/playlists`,
@@ -27,7 +28,7 @@ export const POST = async (request: NextRequest) => {
       method: "POST",
       body: JSON.stringify({
         name,
-        description: "A playlist created by AI",
+        description: "Created by SpotifAI",
         public: false,
       }),
       headers: {

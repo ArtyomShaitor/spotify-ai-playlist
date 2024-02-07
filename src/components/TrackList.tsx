@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/ui/Button";
+import { Button, PrimaryButton } from "@/ui/Button";
 import { Headline } from "@/ui/Headline";
 import Image from "next/image";
 import { useState } from "react";
@@ -26,7 +26,7 @@ interface TrackListProps {
 }
 
 interface TrackProps {
-  image: TrackType["album"]["images"][number];
+  image?: TrackType["album"]["images"][number];
   artists: TrackType["artists"];
   name: string;
   isExplicit?: boolean;
@@ -43,17 +43,19 @@ const Explicit = () => {
 const Track = ({ name, image, artists, isExplicit = false }: TrackProps) => {
   return (
     <li className="flex items-center py-4">
-      <Image
-        src={image.url}
-        alt="album cover"
-        className="w-12 h-12 mr-4 rounded-md"
-        width={150}
-        height={150}
-      />
+      {image && (
+        <Image
+          src={image.url}
+          alt="album cover"
+          className="w-12 h-12 mr-4 rounded-md"
+          width={150}
+          height={150}
+        />
+      )}
       <div>
         <div className="flex items-center gap-1.5">
           {isExplicit && <Explicit />}
-          <p className="font-semibold">{name}</p>
+          <p className="font-semibold text-ellipsis overflow-hidden">{name}</p>
         </div>
         <p className="text-gray-400">
           {artists.map(artist => artist.name).join(", ")}
@@ -87,8 +89,7 @@ export const TrackList = ({ name, tracks }: TrackListProps) => {
       <div className="max-w-lg mx-auto flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <Headline as="h2">{name}</Headline>
-          <Button
-            className="w-fit px-4 py-1 bg-green-500 rounded-full hover:bg-green-600 hover:text-white"
+          <PrimaryButton
             onClick={playlistUrl ? undefined : create}
             href={playlistUrl}
             isDisabled={isLoading}
@@ -98,7 +99,7 @@ export const TrackList = ({ name, tracks }: TrackListProps) => {
               : playlistUrl
               ? "Open Playlist"
               : "Create Playlist"}
-          </Button>
+          </PrimaryButton>
         </div>
         <ul className="divide-y divide-gray-700">
           {tracks.map(track => (
