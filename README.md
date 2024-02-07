@@ -2,6 +2,10 @@
 
 This application leverages AI (ChatGPT) and the Spotify API to create personalized playlists based on user input.
 
+## Demo
+
+![](./public/screencast.gif)
+
 ## Setup
 
 To run this application locally, follow these steps:

@@ -14,7 +14,7 @@ const getPlaylistData = (description: string) =>
   });
 
 const getTrackDetails = (names: string[]) =>
-  fetch("/api/get-track-details", {
+  fetch("/api/get-tracks-details", {
     method: "POST",
     body: JSON.stringify({ names }),
   });
